@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+
+body {
+  font-family: 'Indie Flower', cursive !important;
+  background: #FDE3A7; /* CAPE HONEY */
+  margin: 0;
+  padding: 0;
+}
+
+::selection {
+  background: transparent;
+}
+
+h4 {
+  font-size: 24px;
+  line-height: 1.2;
+  font-family: 'Amatic SC', cursive !important;
+  margin: 5px 0;
+}
+
+.color1 { color: #1BBC9B; } /* MOUNTAIN MEADOW */
+.color2 { color: #C0392B; } /* TALL POPPY */
+
+.card {
+  color: #013243; /* SHERPA BLUE */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 400px;
+  background: #e0e1dc;
+  transform-style: preserve-3d;
+  transform: translate(-50%, -50%) perspective(2000px);
+  box-shadow: inset 300px 0 50px rgba(0,0,0,.5), 20px 0 60px rgba(0,0,0,.5);
+  transition: 1s;
+}
+
+.card:hover {
+  transform: translate(-50%, -50%) perspective(2000px) rotate(15deg) scale(1.1);
+  box-shadow: inset 20px 0 50px rgba(0,0,0,.5), 0 10px 100px rgba(0,0,0,.5);
+}
+
+.card:before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: #BAC1BA;
+  transform-origin: bottom;
+  transform: skewX(-45deg);
+}
+
+.card:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -5px;
+  width: 5px;
+  height: 100%;
+  background: #92A29C;
+  transform-origin: left;
+  transform: skewY(-45deg);
+}
+
+/* KUNCI PERBAIKAN SAMPOOL / COVER */
+.card .imgBox {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2; /* Menjaga sampul tetap di atas saat tertutup */
+  transform-origin: left;
+  transition: .7s;
+  transform-style: preserve-3d;
+}
+
+.card .imgBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden; /* Sembunyikan bagian belakang gambar saat terbuka */
+}
+
+/* Bagian dalam/belakang dari sampul saat terbuka */
+.card .bark {
+  position: absolute;
+  background: #e0e1dc;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: .7s;
+  backface-visibility: hidden;
+  transform: rotateY(180deg); /* Menghadap ke belakang */
+}
+
+.card:hover .imgBox {
+  transform: rotateY(-135deg);
+}
+
+.card:hover .bark {
+  opacity: 1;
+  transition: .6s;
+  box-shadow: 300px 200px 100px rgba(0, 0, 0, .1) inset;
+}
+
+/* KUNCI PERBAIKAN TEKS / DETAILS */
+.card .details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  z-index: 1; /* Di bawah sampul */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card .details p {
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 2px 0;
+  padding: 0;
+}
+
+.card .details h4 {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+  margin-top: 10px !important;
+}
